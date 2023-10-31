@@ -14,7 +14,7 @@ In this project, you'll be tasked to do the following:
 ```bash
 ├── azure-vote-all-in-one-redis.yaml # Used to deploy the application to AKS using the "kubectl apply" command
 ├── docker-compose.yaml              # Used to create Docker images, and run the application locally using multiple Docker containers
-├── azure-vote                       # Frontend Flask applicattion
+├── azure-vote                       # Frontend Flask application
 │   ├── config_file.cfg              # Contains key-values for UI Configurations
 │   ├── main.py                      # You may need to add a few lines of code here to enable App Insights
 │   ├── Dockerfile                   # This file is used by docker-compose.yaml. It pulls a base image, installs packages
@@ -212,7 +212,7 @@ The script above will take a few minutes to create VMSS and related resources. O
 2. Edit the `main.py` file again to configure the Redis Connection. 
       ```py
       # Comment/remove the next two lines of code.
-      # Redis Connection to a local server running on the same machine where the current FLask app is running. 
+      # Redis Connection to a local server running on the same machine where the current Flask app is running. 
       # r = redis.Redis()
       # Redis configurations
       redis_server = os.environ['REDIS']
@@ -234,7 +234,7 @@ The script above will take a few minutes to create VMSS and related resources. O
       ```bash
       # Pull the base image
       FROM tiangolo/uwsgi-nginx-flask:python3.6
-      # Install depndencies 
+      # Install dependencies 
       RUN pip install redis
       RUN pip install opencensus
       RUN pip install opencensus-ext-azure
@@ -268,13 +268,13 @@ The script above will take a few minutes to create VMSS and related resources. O
       redis-cli ping
       ```
 
-5. Once your aplication is running successfully in the multi-container environment locally, prepare to push the (frontend) image to the ACR. Create the AKS cluster:
+5. Once your application is running successfully in the multi-container environment locally, prepare to push the (frontend) image to the ACR. Create the AKS cluster:
       ```bash
       # In you terminal run the following
       az login
       # Navigate to the project starter code again, if not already
       cd nd081-c4-azure-performance-project-starter
-      # Assuming the acdnd-c4-project resource group is still avaiable with you
+      # Assuming the acdnd-c4-project resource group is still available with you
       chmod +x create-cluster.sh
       # The script below will create an AKS cluster, Configure kubectl to connect to your Kubernetes cluster, and Verify the connection to your cluster
       ./create-cluster.sh
@@ -282,7 +282,7 @@ The script above will take a few minutes to create VMSS and related resources. O
 
 6. Next, create a Container Registry in Azure to store the image, and AKS can later pull them during deployment to the AKS cluster. Feel free to change the ACR name in place of `myacr202106` below.
       ```bash
-      # Assuming the acdnd-c4-project resource group is still avaiable with you
+      # Assuming the acdnd-c4-project resource group is still available with you
       # Create a resource group
       az group create --name acdnd-c4-project --location westus2
       # ACR name should not have upper case letter
@@ -355,7 +355,7 @@ The script above will take a few minutes to create VMSS and related resources. O
 
 # Part 4 - Submissions
 
-1. The `main.py` which will show the code for the Application Insights telemety data.
+1. The `main.py` which will show the code for the Application Insights telemetry data.
 
 
 2. Screenshots for the kubernetes cluster which include:
